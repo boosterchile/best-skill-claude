@@ -53,8 +53,8 @@ self_check() {
         *) printf "  ⚠ non-Darwin OS detected (hooks designed for macOS BSD utils)\n" ;;
     esac
 
-    # Hooks executable
-    local hooks_dir="${PROJECT_DIR}/.claude/hooks"
+    # Hooks executable (plugin layout)
+    local hooks_dir="${PROJECT_DIR}/hooks"
     if [ -d "$hooks_dir" ]; then
         local non_exec=0
         for h in "$hooks_dir"/*.sh; do
@@ -86,7 +86,7 @@ self_check() {
         printf "  ✗ skills/ directory missing\n"; fail=1
     fi
 
-    # Ledger writable
+    # Ledger writable (will be created at runtime under the user's project)
     mkdir -p "$LEDGER_DIR" 2>/dev/null || true
     if [ -w "$LEDGER_DIR" ]; then
         printf "  ✓ ledger writable\n"
@@ -94,15 +94,37 @@ self_check() {
         printf "  ✗ ledger directory not writable: %s\n" "$LEDGER_DIR"; fail=1
     fi
 
-    # settings.json present
-    if [ -f "${PROJECT_DIR}/.claude/settings.json" ]; then
-        if command -v jq >/dev/null 2>&1 && jq empty "${PROJECT_DIR}/.claude/settings.json" 2>/dev/null; then
-            printf "  ✓ .claude/settings.json valid\n"
+    # plugin.json present and valid
+    if [ -f "${PROJECT_DIR}/.claude-plugin/plugin.json" ]; then
+        if command -v jq >/dev/null 2>&1 && jq empty "${PROJECT_DIR}/.claude-plugin/plugin.json" 2>/dev/null; then
+            printf "  ✓ .claude-plugin/plugin.json valid\n"
         else
-            printf "  ⚠ .claude/settings.json present but invalid JSON\n"
+            printf "  ⚠ .claude-plugin/plugin.json present but invalid JSON\n"
         fi
     else
-        printf "  ✗ .claude/settings.json missing\n"; fail=1
+        printf "  ✗ .claude-plugin/plugin.json missing\n"; fail=1
+    fi
+
+    # marketplace.json present and valid
+    if [ -f "${PROJECT_DIR}/.claude-plugin/marketplace.json" ]; then
+        if command -v jq >/dev/null 2>&1 && jq empty "${PROJECT_DIR}/.claude-plugin/marketplace.json" 2>/dev/null; then
+            printf "  ✓ .claude-plugin/marketplace.json valid\n"
+        else
+            printf "  ⚠ .claude-plugin/marketplace.json present but invalid JSON\n"
+        fi
+    else
+        printf "  ✗ .claude-plugin/marketplace.json missing\n"; fail=1
+    fi
+
+    # hooks/hooks.json present and valid
+    if [ -f "${PROJECT_DIR}/hooks/hooks.json" ]; then
+        if command -v jq >/dev/null 2>&1 && jq empty "${PROJECT_DIR}/hooks/hooks.json" 2>/dev/null; then
+            printf "  ✓ hooks/hooks.json valid\n"
+        else
+            printf "  ⚠ hooks/hooks.json present but invalid JSON\n"
+        fi
+    else
+        printf "  ✗ hooks/hooks.json missing\n"; fail=1
     fi
 
     # CLAUDE.md present

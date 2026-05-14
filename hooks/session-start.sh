@@ -13,6 +13,7 @@
 set -eu
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 LEDGER_DIR="${PROJECT_DIR}/.claude/ledger"
 TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 TODAY="$(date -u +%Y-%m-%d)"
@@ -60,7 +61,7 @@ if [ ! -s "$LEDGER_FILE" ]; then
         "$TS" \
         "$SESSION_ID" \
         "$PROJECT_DIR" \
-        "$(shasum -a 256 "${PROJECT_DIR}/CLAUDE.md" 2>/dev/null | awk '{print $1}' || echo 'absent')" \
+        "$(shasum -a 256 "${PLUGIN_ROOT}/CLAUDE.md" 2>/dev/null | awk '{print $1}' || echo 'absent')" \
         >> "$LEDGER_FILE"
 fi
 
@@ -76,12 +77,13 @@ cat <<EOF
 
 You are operating under the agent-rigor contract.
 
-  Operating contract:  ${PROJECT_DIR}/CLAUDE.md
+  Operating contract:  ${PLUGIN_ROOT}/CLAUDE.md
   Session ledger:      ${LEDGER_FILE}
+  Project working dir: ${PROJECT_DIR}
 
 REQUIRED before any non-trivial action:
-  1. Read CLAUDE.md in full this session.
-  2. When entering a phase, read the corresponding skills/<N>-<name>/SKILL.md.
+  1. Read ${PLUGIN_ROOT}/CLAUDE.md in full this session.
+  2. When entering a phase, read the corresponding ${PLUGIN_ROOT}/skills/<N>-<name>/SKILL.md.
   3. Write phase_enter / phase_exit / artifact_produced events to the ledger.
   4. Never use drift vocabulary ("for now", "MVP", "later", "quick fix", ...)
      without explicit justification recorded in the ledger.

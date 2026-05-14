@@ -55,46 +55,59 @@ Cinco principios:
 - `jq` para procesar el ledger (`brew install jq`)
 - Opcional: `gh` para integraciones de PR (`brew install gh`)
 
-### Instalación como plugin de Claude Code
+### Instalación como plugin de Claude Code (recomendado)
 
-```bash
-# 'best-skill-claude' es el repo, 'agent-rigor' es el nombre interno del marketplace y del plugin
+Dentro de una sesión de Claude Code:
+
+```
 /plugin marketplace add boosterchile/best-skill-claude
 /plugin install agent-rigor@agent-rigor
 ```
 
-### Instalación manual (desarrollo local)
-
-```bash
-git clone https://github.com/boosterchile/best-skill-claude.git ~/.claude/plugins/agent-rigor
-# Habilitar hooks a nivel de usuario:
-cp ~/.claude/plugins/agent-rigor/.claude/settings.json ~/.claude/settings.json
-# O por proyecto:
-cd /tu/proyecto
-cp -r ~/.claude/plugins/agent-rigor/.claude .
-```
+Tras instalar, los skills, comandos y agentes aparecen con namespace `agent-rigor:`. Por ejemplo, el comando para producir un spec es `/agent-rigor:spec`. Los hooks se activan automáticamente en todas tus sesiones de Claude Code.
 
 ### Verificación post-instalación
 
-```bash
-bash ~/.claude/plugins/agent-rigor/benchmark/scripts/collect-metrics.sh --self-check
+Desde cualquier proyecto, dentro de Claude Code:
+
+```
+/plugin list
 ```
 
-Debe imprimir `✓ hooks OK`, `✓ skills OK`, `✓ ledger writable`, `✓ jq present`.
+Debes ver `agent-rigor` listado y habilitado. Para chequear el ambiente:
+
+```bash
+bash ~/.claude/plugins/marketplaces/agent-rigor/agent-rigor/benchmark/scripts/collect-metrics.sh --self-check
+```
+
+Debe imprimir verde: `bash`, `jq`, `git`, `hooks executable`, `skills/ has 22 SKILL.md`, `ledger writable`, `plugin.json valid`, `marketplace.json valid`, `hooks/hooks.json valid`, `CLAUDE.md present`.
+
+### Instalación manual (sin marketplace)
+
+Si prefieres clonar directamente (útil para desarrollo del propio plugin):
+
+```bash
+git clone https://github.com/boosterchile/best-skill-claude.git ~/agent-rigor
+claude --plugin-dir ~/agent-rigor
+```
+
+El flag `--plugin-dir` carga el plugin para esa sesión sin pasar por el marketplace.
 
 ## Comandos
 
+Una vez instalado el plugin, los comandos quedan namespaced con el prefijo `agent-rigor:`. Esto evita conflictos con otros plugins.
+
 | Comando | Fase | Qué hace |
 |---|---|---|
-| `/spec` | Define | Produce `.specs/<feature>/spec.md` con PRD completo. Bloquea avance sin él. |
-| `/plan` | Plan | Descompone spec en tareas atómicas en `.specs/<feature>/plan.md` |
-| `/build` | Build | Implementación incremental, una rebanada vertical a la vez |
-| `/design` | Build | Genera `design-system/MASTER.md` o `pages/<page>.md` (UI/UX) |
-| `/test` | Verify | TDD + integración + browser testing si aplica |
-| `/review` | Review | Auto-revisión de cinco ejes + invocación de `devils-advocate` |
-| `/code-simplify` | Review | Reducir complejidad manteniendo comportamiento exacto |
-| `/ship` | Ship | Checklist de lanzamiento + feature flags + monitoreo |
-| `/benchmark` | Meta | Genera scorecard de la sesión y compara con baseline |
+| `/agent-rigor:spec` | Define | Produce `.specs/<feature>/spec.md` con PRD completo. Bloquea avance sin él. |
+| `/agent-rigor:plan` | Plan | Descompone spec en tareas atómicas en `.specs/<feature>/plan.md` |
+| `/agent-rigor:build` | Build | Implementación incremental, una rebanada vertical a la vez |
+| `/agent-rigor:design` | Build | Genera `design-system/MASTER.md` o `pages/<page>.md` (UI/UX) |
+| `/agent-rigor:test` | Verify | TDD + integración + browser testing si aplica |
+| `/agent-rigor:review` | Review | Auto-revisión de cinco ejes + invocación de `devils-advocate` |
+| `/agent-rigor:code-simplify` | Review | Reducir complejidad manteniendo comportamiento exacto |
+| `/agent-rigor:ship` | Ship | Checklist de lanzamiento + feature flags + monitoreo |
+| `/agent-rigor:benchmark` | Meta | Genera scorecard de la sesión y compara con baseline |
 
 ## Las 22 skills
 

@@ -22,6 +22,7 @@
 set -eu
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 LEDGER_DIR="${PROJECT_DIR}/.claude/ledger"
 LEDGER_FILE="$(cat "${LEDGER_DIR}/.current" 2>/dev/null || echo "")"
 TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -60,11 +61,11 @@ case "$TOOL_NAME" in
 You attempted a $TOOL_NAME but the session ledger shows no read of CLAUDE.md.
 Before writing or editing any file in this project, read:
 
-  ${PROJECT_DIR}/CLAUDE.md
+  ${PLUGIN_ROOT}/CLAUDE.md
 
 Then log the read in the ledger by writing this line:
 
-  echo '{"ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","type":"skill_read","file":"${PROJECT_DIR}/CLAUDE.md"}' >> ${LEDGER_FILE:-<ledger>}
+  echo '{"ts":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","type":"skill_read","file":"${PLUGIN_ROOT}/CLAUDE.md"}' >> ${LEDGER_FILE:-<ledger>}
 
 Reformulate your action after reading.
 EOF

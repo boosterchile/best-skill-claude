@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "agent-rigor",
+  "version": "0.2.0",
+  "description": "Senior-engineering discipline pack for Claude Code: 22 skills, 5 enforcement hooks, 5 sub-agents, 9 slash commands, and a compliance benchmark. Designed for solo developers on macOS who refuse to ship MVP-quality code.",
+  "author": {
+    "name": "fueradelabox"
+  },
+  "homepage": "https://github.com/boosterchile/best-skill-claude",
+  "repository": "https://github.com/boosterchile/best-skill-claude",
+  "license": "MIT",
+  "keywords": [
+    "discipline",
+    "solo-developer",
+    "spec-driven",
+    "tdd",
+    "macos",
+    "ui-ux",
+    "code-review",
+    "ddd"
+  ]
+}

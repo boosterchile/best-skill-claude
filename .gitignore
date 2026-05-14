@@ -16,7 +16,9 @@ Thumbs.db
 *.swo
 *~
 
-# Per-session ledger files (the structure is tracked, the data is not)
+# Per-session ledger files. These live in the USER'S project at runtime
+# (under ${CLAUDE_PROJECT_DIR}/.claude/ledger/), not in this plugin repo.
+# Kept here in case someone clones the plugin for local development.
 .claude/ledger/*.jsonl
 .claude/ledger/.current
 .claude/ledger/.last_source_write

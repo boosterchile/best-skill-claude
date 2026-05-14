@@ -1,146 +1,28 @@
 {
-  "$schema": "https://json.schemastore.org/claude-plugin",
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "agent-rigor",
-  "version": "0.1.0",
-  "description": "Senior-engineering discipline pack for Claude Code. Skills, hooks, ledger, devils-advocate sub-agent, and compliance benchmark — designed for solo developers on macOS who refuse to ship MVP-quality code.",
-  "author": {
-    "name": "agent-rigor contributors",
-    "url": "https://github.com/anthropics/claude-code"
+  "owner": {
+    "name": "fueradelabox",
+    "url": "https://github.com/boosterchile"
   },
-  "license": "MIT",
-  "homepage": "https://github.com/boosterchile/best-skill-claude",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/boosterchile/best-skill-claude.git"
-  },
-  "keywords": [
-    "agent-skills",
-    "discipline",
-    "solo-developer",
-    "spec-driven",
-    "tdd",
-    "macos",
-    "claude-code",
-    "ui-ux",
-    "code-review",
-    "ddd"
-  ],
-  "tags": [
-    "engineering-practice",
-    "skill-pack",
-    "hooks",
-    "sub-agents",
-    "benchmark"
-  ],
-  "components": {
-    "skills": [
-      "skills/00-using-this-pack",
-      "skills/10-idea-refine",
-      "skills/11-spec-driven-development",
-      "skills/20-planning-and-task-breakdown",
-      "skills/30-incremental-implementation",
-      "skills/31-test-driven-development",
-      "skills/32-context-engineering",
-      "skills/33-source-driven-development",
-      "skills/34-frontend-ui-engineering",
-      "skills/35-design-system-generation",
-      "skills/36-api-and-interface-design",
-      "skills/40-browser-testing-with-devtools",
-      "skills/41-debugging-and-error-recovery",
-      "skills/50-code-review-and-quality",
-      "skills/51-code-simplification",
-      "skills/52-security-and-hardening",
-      "skills/53-performance-optimization",
-      "skills/60-git-workflow-and-versioning",
-      "skills/61-ci-cd-and-automation",
-      "skills/62-deprecation-and-migration",
-      "skills/63-documentation-and-adrs",
-      "skills/64-shipping-and-launch"
-    ],
-    "agents": [
-      ".claude/agents/devils-advocate.md",
-      ".claude/agents/code-reviewer.md",
-      ".claude/agents/test-engineer.md",
-      ".claude/agents/security-auditor.md",
-      ".claude/agents/ux-designer.md"
-    ],
-    "commands": [
-      ".claude/commands/spec.md",
-      ".claude/commands/plan.md",
-      ".claude/commands/build.md",
-      ".claude/commands/test.md",
-      ".claude/commands/review.md",
-      ".claude/commands/ship.md",
-      ".claude/commands/design.md",
-      ".claude/commands/code-simplify.md",
-      ".claude/commands/benchmark.md"
-    ],
-    "hooks": [
-      ".claude/hooks/session-start.sh",
-      ".claude/hooks/user-prompt-submit.sh",
-      ".claude/hooks/pre-tool-use.sh",
-      ".claude/hooks/post-tool-use.sh",
-      ".claude/hooks/stop.sh"
-    ],
-    "references": [
-      "references/solo-developer-patterns.md",
-      "references/macos-environment.md",
-      "references/ui-ux-checklist.md",
-      "references/testing-patterns.md",
-      "references/security-checklist.md",
-      "references/performance-checklist.md",
-      "references/accessibility-checklist.md"
-    ]
-  },
-  "requirements": {
-    "platform": "macos",
-    "platform_note": "Linux works but hooks use BSD date/sed idioms; Windows unsupported.",
-    "tools": {
-      "bash": ">=3.2",
-      "jq": ">=1.6",
-      "git": ">=2.30",
-      "gh": ">=2.0 (optional)"
-    }
-  },
-  "install": {
-    "instructions": "See docs/getting-started.md",
-    "verify": "bash benchmark/scripts/collect-metrics.sh --self-check"
-  },
-  "credits": [
+  "description": "Marketplace bundling the agent-rigor plugin — senior-engineering discipline for Claude Code, designed for solo developers on macOS.",
+  "plugins": [
     {
-      "name": "addyosmani/agent-skills",
-      "license": "MIT",
-      "url": "https://github.com/addyosmani/agent-skills",
-      "role": "Upstream skill structure and phase taxonomy. See ATTRIBUTION.md for file-level derivations."
-    },
-    {
-      "name": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "license": "MIT",
-      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-      "role": "UI/UX reasoning patterns. Adapted for skill 35-design-system-generation without Python dependency."
-    },
-    {
-      "name": "Michael Nygard, Documenting Architecture Decisions",
-      "license": "public domain",
-      "role": "ADR template (skill 63-documentation-and-adrs)."
-    },
-    {
-      "name": "Diátaxis",
-      "license": "CC BY-SA 4.0",
-      "url": "https://diataxis.fr",
-      "role": "Documentation taxonomy (skill 63-documentation-and-adrs)."
-    },
-    {
-      "name": "Keep a Changelog",
-      "license": "CC BY 4.0",
-      "url": "https://keepachangelog.com",
-      "role": "Changelog format."
-    },
-    {
-      "name": "Conventional Commits",
-      "license": "CC BY 3.0",
-      "url": "https://www.conventionalcommits.org",
-      "role": "Commit message format (skill 60-git-workflow-and-versioning)."
+      "name": "agent-rigor",
+      "source": "./",
+      "description": "Senior-engineering discipline pack: 22 skills, 5 enforcement hooks, 5 sub-agents, 9 slash commands, compliance benchmark, anti-drift contract.",
+      "version": "0.2.0",
+      "category": "engineering-practice",
+      "tags": [
+        "spec-driven",
+        "tdd",
+        "code-review",
+        "solo-developer",
+        "macos",
+        "ui-ux",
+        "discipline"
+      ],
+      "strict": true
     }
   ]
 }

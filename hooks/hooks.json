@@ -1,6 +1,4 @@
 {
-  "$schema": "https://docs.claude.com/claude-code/settings-schema.json",
-  "description": "agent-rigor — hook registrations. See docs/anti-drift.md for behavior.",
   "hooks": {
     "SessionStart": [
       {
@@ -8,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/session-start.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
           }
         ]
       }
@@ -19,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/user-prompt-submit.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/user-prompt-submit.sh"
           }
         ]
       }
@@ -30,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/pre-tool-use.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use.sh"
           }
         ]
       },
@@ -39,7 +37,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/pre-tool-use.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use.sh"
           }
         ]
       }
@@ -50,7 +48,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/post-tool-use.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/post-tool-use.sh"
           }
         ]
       }
@@ -61,16 +59,10 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/stop.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/stop.sh"
           }
         ]
       }
-    ]
-  },
-  "permissions": {
-    "allow": [
-      "Bash(${CLAUDE_PROJECT_DIR}/.claude/hooks/**)",
-      "Bash(${CLAUDE_PROJECT_DIR}/benchmark/scripts/**)"
     ]
   }
 }

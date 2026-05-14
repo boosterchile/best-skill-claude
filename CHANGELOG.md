@@ -7,6 +7,28 @@ Versioning: [SemVer](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-05-14
+
+### Changed
+
+- **Repository restructured to conform to Claude Code's official plugin/marketplace spec.** v0.1.0 had components under `.claude/` (standalone-config layout), which prevented `/plugin install` from working. v0.2.0 moves `agents/`, `commands/`, `hooks/`, and `skills/` to the plugin root.
+- `commands/`, `agents/`, `hooks/`, and `skills/` now live at the repo root instead of under `.claude/`.
+- Hook registrations migrated from `.claude/settings.json` to `hooks/hooks.json` per Claude Code spec. Paths now use `${CLAUDE_PLUGIN_ROOT}` rather than `${CLAUDE_PROJECT_DIR}/.claude/`.
+- Hooks now resolve `CLAUDE.md` from `${CLAUDE_PLUGIN_ROOT}/CLAUDE.md` (the plugin's bundled contract), while the per-session ledger continues to live under the user's `${CLAUDE_PROJECT_DIR}/.claude/ledger/`.
+- Benchmark `--self-check` now validates the plugin layout (`plugin.json`, `marketplace.json`, `hooks/hooks.json`) instead of the legacy `.claude/settings.json`.
+- README install instructions updated for `/plugin marketplace add` + `/plugin install` flow with namespaced commands (`/agent-rigor:spec` etc.).
+
+### Added
+
+- `.claude-plugin/plugin.json` — plugin manifest (separate from marketplace.json).
+- `hooks/hooks.json` — Claude Code spec-compliant hook registrations.
+
+### Removed
+
+- `.claude/settings.json` — replaced by `hooks/hooks.json` + (optional) plugin-level `settings.json`.
+- `.claude/ledger/.gitkeep` — the ledger is per-project runtime data, not a plugin artifact.
+- `.claude/` directory entirely.
+
 ## [0.1.0] - 2026-05-13
 
 ### Added
@@ -38,5 +60,6 @@ Versioning: [SemVer](https://semver.org/spec/v2.0.0.html).
 - `.claude-plugin/marketplace.json` for Claude Code plugin discovery
 - Attribution to upstream MIT projects (addyosmani/agent-skills, nextlevelbuilder/ui-ux-pro-max-skill) in ATTRIBUTION.md
 
-[Unreleased]: https://github.com/boosterchile/best-skill-claude/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/boosterchile/best-skill-claude/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/boosterchile/best-skill-claude/releases/tag/v0.2.0
 [0.1.0]: https://github.com/boosterchile/best-skill-claude/releases/tag/v0.1.0

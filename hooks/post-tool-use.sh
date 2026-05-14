@@ -10,6 +10,7 @@
 set -eu
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 LEDGER_DIR="${PROJECT_DIR}/.claude/ledger"
 LEDGER_FILE="$(cat "${LEDGER_DIR}/.current" 2>/dev/null || echo "")"
 TS="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
