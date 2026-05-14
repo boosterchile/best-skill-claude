@@ -1,0 +1,55 @@
+# agent-rigor: gitignore
+
+# OS noise
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Editor noise
+.idea/
+.vscode/
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# Per-session ledger files (the structure is tracked, the data is not)
+.claude/ledger/*.jsonl
+.claude/ledger/.current
+.claude/ledger/.last_source_write
+
+# Local benchmark data and reports (templates and scripts are tracked)
+benchmark/data/*
+!benchmark/data/.gitkeep
+benchmark/reports/*
+!benchmark/reports/.gitkeep
+
+# Scratch / experimentation
+.specs/_scratch/
+/tmp/
+scratch/
+
+# Common build artifacts
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+*.log
+
+# Python (if anyone uses this skill pack in a Python project)
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
