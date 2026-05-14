@@ -1,0 +1,44 @@
+{
+  "$schema": "./baseline.schema.json",
+  "version": 1,
+  "captured_on": "2026-05-13",
+  "description": "Baseline values for the agent-rigor scorecard. Values are fractions (0.0 to 1.0) except where noted. Targets are based on observed solo-developer behaviour with and without enforcement layers.",
+  "without_agent_rigor": {
+    "_note": "Approximate behaviour of a disciplined solo developer using Claude Code WITHOUT the agent-rigor enforcement layer. Anecdotal but representative.",
+    "spec_before_code_rate": 0.20,
+    "tdd_compliance": 0.15,
+    "commits_le_100_loc": 0.55,
+    "review_before_merge_rate": 0.40,
+    "devils_advocate_invocation_rate": 0.00,
+    "adr_coverage": 0.10,
+    "skip_cycle_rate": 0.45,
+    "cooling_off_respect_rate": 0.00,
+    "phase_artifact_completeness": 0.30,
+    "drift_block_to_detect_ratio": 0.00
+  },
+  "target_with_agent_rigor": {
+    "_note": "Targets a disciplined solo developer should hit after 4-6 weeks of agent-rigor use. Not all targets are 1.0 — some require human waivers for legitimate edge cases.",
+    "spec_before_code_rate": 0.95,
+    "tdd_compliance": 0.80,
+    "commits_le_100_loc": 0.90,
+    "review_before_merge_rate": 1.00,
+    "devils_advocate_invocation_rate": 1.00,
+    "adr_coverage": 0.80,
+    "skip_cycle_rate": 0.15,
+    "cooling_off_respect_rate": 0.95,
+    "phase_artifact_completeness": 0.95,
+    "drift_block_to_detect_ratio": 0.70
+  },
+  "thresholds": {
+    "_note": "How the scorecard renders glyphs: ✓ ≥ target, = within tolerance, ⚠ < tolerance, ✗ < without_agent_rigor",
+    "tolerance": 0.05
+  },
+  "drift_vocabulary_pattern": "for now|por ahora|más adelante|mas adelante|\\bMVP\\b|quick fix|hack|temporal|temporary|good enough|TODO: test later|HACK:|XXX:|FIXME[^:]",
+  "phase_artifacts": {
+    "spec":   ".specs/<feature>/spec.md",
+    "plan":   ".specs/<feature>/plan.md",
+    "verify": ".specs/<feature>/verify.md",
+    "review": ".specs/<feature>/review.md",
+    "ship":   ".specs/<feature>/ship.md"
+  }
+}
