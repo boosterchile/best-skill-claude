@@ -148,4 +148,4 @@ SOFTWARE.
 
 ## Concerns about derivation
 
-If you are a maintainer of either upstream project and believe any part of agent-rigor exceeds fair-use derivation under MIT terms, please open an issue at https://github.com/fueradelabox/best-skill-claude/issues. The intent of this file is to document derivation honestly; corrections are welcome.
+If you are a maintainer of either upstream project and believe any part of agent-rigor exceeds fair-use derivation under MIT terms, please open an issue at https://github.com/boosterchile/best-skill-claude/issues. The intent of this file is to document derivation honestly; corrections are welcome.

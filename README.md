@@ -59,14 +59,14 @@ Cinco principios:
 
 ```bash
 # 'best-skill-claude' es el repo, 'agent-rigor' es el nombre interno del marketplace y del plugin
-/plugin marketplace add fueradelabox/best-skill-claude
+/plugin marketplace add boosterchile/best-skill-claude
 /plugin install agent-rigor@agent-rigor
 ```
 
 ### Instalación manual (desarrollo local)
 
 ```bash
-git clone https://github.com/fueradelabox/best-skill-claude.git ~/.claude/plugins/agent-rigor
+git clone https://github.com/boosterchile/best-skill-claude.git ~/.claude/plugins/agent-rigor
 # Habilitar hooks a nivel de usuario:
 cp ~/.claude/plugins/agent-rigor/.claude/settings.json ~/.claude/settings.json
 # O por proyecto:

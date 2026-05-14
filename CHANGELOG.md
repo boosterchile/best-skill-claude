@@ -38,5 +38,5 @@ Versioning: [SemVer](https://semver.org/spec/v2.0.0.html).
 - `.claude-plugin/marketplace.json` for Claude Code plugin discovery
 - Attribution to upstream MIT projects (addyosmani/agent-skills, nextlevelbuilder/ui-ux-pro-max-skill) in ATTRIBUTION.md
 
-[Unreleased]: https://github.com/fueradelabox/best-skill-claude/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/fueradelabox/best-skill-claude/releases/tag/v0.1.0
+[Unreleased]: https://github.com/boosterchile/best-skill-claude/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/boosterchile/best-skill-claude/releases/tag/v0.1.0

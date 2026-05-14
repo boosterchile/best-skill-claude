@@ -95,7 +95,7 @@ Deviation from this template needs a reason.
 
 1. Clone:
    ```bash
-   git clone https://github.com/fueradelabox/best-skill-claude
+   git clone https://github.com/boosterchile/best-skill-claude
    cd agent-rigor
    ```
 
